@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "3b411c6a-4b04-4847-a07b-bab8c9b4c005",
+		"name": "STN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/people",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/people",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"people"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/people?name=geor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/people?name=geor",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"people"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "geor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/people?country=united-states",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/people?country=united-states",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"people"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "united-states"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/people?city=minneapolis%20-%20mn",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/people?city=minneapolis%20-%20mn",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"people"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "minneapolis%20-%20mn"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/people?city=minneapolis%20-%20mn&name=george",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/people?city=minneapolis%20-%20mn&name=george",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"people"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "minneapolis%20-%20mn"
+						},
+						{
+							"key": "name",
+							"value": "george"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/people?city=minneapolis%20-%20MN&name=george",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/people?city=minneapolis%20-%20MN&name=george",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"people"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "minneapolis%20-%20MN"
+								},
+								{
+									"key": "name",
+									"value": "george"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jul 2020 21:51:04 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 193,\n            \"full_name\": \"George Floyd\",\n            \"identifier\": \"george-floyd\",\n            \"date_of_incident\": \"2020-05-25\",\n            \"number_of_children\": 2,\n            \"age\": 46,\n            \"city\": \"Minneapolis - MN\",\n            \"country\": \"United States\",\n            \"their_story\": \"On May 25, 2020, George Floyd, a 46-year-old black man, was killed in Minneapolis, Minnesota during an arrest for allegedly using a counterfeit bill. Derek Chauvin, a white police officer, knelt on Floyd's neck for almost nine minutes while Floyd was handcuffed and lying face down in the street, begging for his life and repeatedly saying \\\"I can't breathe\\\". A second and third officer further restrained Floyd while a fourth prevented bystanders from intervening. During the final three minutes Floyd was motionless and had no pulse while Chauvin ignored onlookers' pleas to remove his knee, which he did not do until medics told him to.\\nAll four officers were fired the next day after videos made by witnesses and security cameras became public. Two autopsies found Floyd's death to be a homicide. Chauvin was initially charged with third-degree murder and second-degree manslaughter, to which was later added second-degree murder; the three other officers were charged with aiding and abetting second-degree murder.\\nFloyd's death triggered demonstrations and protests in more than 75 U.S cities and around the world against police brutality, police racism, and lack of police accountability. On June 5, the Minneapolis City Council took action to ban chokeholds and require police officers to intervene against the use of excessive force by other officers; subsequently on June 7, the Council committed to dismantle its police department.\",\n            \"outcome\": null,\n            \"biography\": null,\n            \"images\": [\n                {\n                    \"id\": 193,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd.jpg\"\n                },\n                {\n                    \"id\": 194,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd-1.jpg\"\n                }\n            ],\n            \"sharable_links\": {\n                \"base\": \"https://www.saytheirnames.io/profile/george-floyd\",\n                \"facebook\": \"https://www.facebook.com/sharer/sharer.php?u=https://www.saytheirnames.io/profile/george-floyd\",\n                \"twitter\": \"https://twitter.com/home?status=https://www.saytheirnames.io/profile/george-floyd\",\n                \"whatsapp\": \"https://wa.me/?text=https://www.saytheirnames.io/profile/george-floyd\"\n            },\n            \"media\": [\n                {\n                    \"id\": 193,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd.jpg\"\n                },\n                {\n                    \"id\": 194,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd-1.jpg\"\n                }\n            ]\n        }\n    ],\n    \"links\": {\n        \"first\": \"https://saytheirnames.dev/api/people?city=minneapolis%20-%20MN&name=george&page=1\",\n        \"last\": \"https://saytheirnames.dev/api/people?city=minneapolis%20-%20MN&name=george&page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"path\": \"https://saytheirnames.dev/api/people\",\n        \"per_page\": 12,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "/people?city=minneapolis%20-%20mn&name=george&sex=m&year=2010",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{mock_server}}{{base_url}}/people?city=minneapolis%20-%20mn&name=george",
+					"host": [
+						"{{mock_server}}{{base_url}}"
+					],
+					"path": [
+						"people"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "minneapolis%20-%20mn"
+						},
+						{
+							"key": "name",
+							"value": "george"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/people?city=minneapolis%20-%20mn&name=george&gender=m&year=2020&country=united-states&age=(40,50)&children=true",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "PMAK-5f1f4b8db69e54003817c5c3-71e732b41914f7f75aa8dd79ce28574f32",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://98b9771b-abd5-4bdc-bf30-558e1a8de35c.mock.pstmn.io/{{base_url}}/people?city=minneapolis%20-%20mn&name=george&gender=m&year=2020&country=united-states&age=(40,50)&children=true",
+							"protocol": "https",
+							"host": [
+								"98b9771b-abd5-4bdc-bf30-558e1a8de35c",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"{{base_url}}",
+								"people"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "minneapolis%20-%20mn"
+								},
+								{
+									"key": "name",
+									"value": "george"
+								},
+								{
+									"key": "gender",
+									"value": "m"
+								},
+								{
+									"key": "year",
+									"value": "2020"
+								},
+								{
+									"key": "country",
+									"value": "united-states"
+								},
+								{
+									"key": "age",
+									"value": "(40,50)"
+								},
+								{
+									"key": "children",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jul 2020 21:48:18 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1595886557"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=3ccd1e233c7972c4"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=a4727de9c768646d"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 193,\n            \"full_name\": \"George Floyd\",\n            \"identifier\": \"george-floyd\",\n            \"date_of_incident\": \"2020-05-25\",\n            \"number_of_children\": 2,\n            \"age\": 46,\n            \"city\": \"Minneapolis - MN\",\n            \"country\": \"United States\",\n            \"their_story\": \"On May 25, 2020, George Floyd, a 46-year-old black man, was killed in Minneapolis, Minnesota during an arrest for allegedly using a counterfeit bill. Derek Chauvin, a white police officer, knelt on Floyd's neck for almost nine minutes while Floyd was handcuffed and lying face down in the street, begging for his life and repeatedly saying \\\"I can't breathe\\\". A second and third officer further restrained Floyd while a fourth prevented bystanders from intervening. During the final three minutes Floyd was motionless and had no pulse while Chauvin ignored onlookers' pleas to remove his knee, which he did not do until medics told him to.\\nAll four officers were fired the next day after videos made by witnesses and security cameras became public. Two autopsies found Floyd's death to be a homicide. Chauvin was initially charged with third-degree murder and second-degree manslaughter, to which was later added second-degree murder; the three other officers were charged with aiding and abetting second-degree murder.\\nFloyd's death triggered demonstrations and protests in more than 75 U.S cities and around the world against police brutality, police racism, and lack of police accountability. On June 5, the Minneapolis City Council took action to ban chokeholds and require police officers to intervene against the use of excessive force by other officers; subsequently on June 7, the Council committed to dismantle its police department.\",\n            \"outcome\": null,\n            \"biography\": null,\n            \"images\": [\n                {\n                    \"id\": 193,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd.jpg\"\n                },\n                {\n                    \"id\": 194,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd-1.jpg\"\n                }\n            ],\n            \"sharable_links\": {\n                \"base\": \"https://www.saytheirnames.io/profile/george-floyd\",\n                \"facebook\": \"https://www.facebook.com/sharer/sharer.php?u=https://www.saytheirnames.io/profile/george-floyd\",\n                \"twitter\": \"https://twitter.com/home?status=https://www.saytheirnames.io/profile/george-floyd\",\n                \"whatsapp\": \"https://wa.me/?text=https://www.saytheirnames.io/profile/george-floyd\"\n            },\n            \"media\": [\n                {\n                    \"id\": 193,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd.jpg\"\n                },\n                {\n                    \"id\": 194,\n                    \"person_id\": 193,\n                    \"image_url\": \"https://say-their-names.fra1.cdn.digitaloceanspaces.com/george-floyd/george-floyd-1.jpg\"\n                }\n            ]\n        }\n    ],\n    \"links\": {\n        \"first\": \"https://saytheirnames.dev/api/people?country=united-states&city=minneapolis%20-%20MN&name=george&gender=m&year=2020&children=true&age=(40,50)&page=1\",\n        \"last\": \"https://saytheirnames.dev/api/people?country=united-states&city=minneapolis%20-%20MN&name=george&gender=m&year=2020&children=true&age=(40,50)&page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"path\": \"https://saytheirnames.dev/api/people\",\n        \"per_page\": 12,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "/people/:name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/people/:name",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"people",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "george-floyd"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/donation-types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/donation-types",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"donation-types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/donations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/donations",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"donations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/donations/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/donations/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"donations",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/donations/?type=victims",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/donations?type=victims",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"donations"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "victims"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/donations/?name=george-floyd",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/donations?name=george-floyd",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"donations"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "george-floyd"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/petition-types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/petition-types",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"petition-types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/petitions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/petitions",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"petitions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/petitions/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/petitions/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"petitions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/petitions?type=victims",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/petitions?type=victims",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"petitions"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "victims"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/petitions?name=george-floyd",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/petitions?name=george-floyd",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"petitions"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "george-floyd"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "66d2a3b6-2b9a-42b5-b1df-7c4e8efa5bbb",
+		"name": "Base64",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a crocodile with naughty-string name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1c615397-196a-47e3-a2da-889668efcb34",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							"\r",
+							"var b64decode = require('atob');\r",
+							"\r",
+							"// Get the base64 naughty string injected by the Collection Runner\r",
+							"var fn64 = pm.variables.get(\"encoded\");\r",
+							"\r",
+							"// Set the decoded value as the \"naughty\" variable\r",
+							"pm.variables.set(\"naughty\", b64decode(fn64));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e1ccd84-6ca1-4604-9f98-965845a7319b",
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"var encodedParam = pm.variables.get(\"encoded\");\r",
+							"var expected = pm.variables.get(\"naughty\");\r",
+							"\r",
+							"// Because the strings are naughty, it is \r",
+							"// better to log the encoded string value\r",
+							"pm.test(\"No 500 response : \" + encodedParam, function () {\r",
+							"    pm.expect(pm.response.code).to.be([400]);\r",
+							"});\r",
+							"\r",
+							"// if the POST wasn't ok there is no need to continue\r",
+							"if(pm.response.code === 201){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.test(\"Name in response is correct\", function(){\r",
+							"        pm.expect(jsonData.name).to.eql(expected);\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{naughty}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "{{randomDate}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "This test can only be run alongside the naughty-string.csv file in the collection runner. \n\n1. Log in\n2. Create a crocodile with a naughty-string name"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

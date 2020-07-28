@@ -1,0 +1,2186 @@
+{
+	"info": {
+		"_postman_id": "5c08e8e0-27a5-4064-b497-f6160dc3d553",
+		"name": "k6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List of all public crocodiles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c42b3e9f-b500-4ceb-bb05-c27411e35d40",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/public/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"public",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "List of all public crocodiles"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a random public crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "93ab5211-6cd0-43dd-8882-110916d40a7b",
+						"exec": [
+							"pm.environment.set('randomNumber', Math.floor(Math.random() * 7) + 1);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcea7976-9b13-4734-888c-0387783c327b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/public/crocodiles/{{randomNumber}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"public",
+						"crocodiles",
+						"{{randomNumber}}"
+					]
+				},
+				"description": "Select a random public crocodile. The randomNumber variable assumes that the number of crocodiles in the public list is only 7. "
+			},
+			"response": []
+		},
+		{
+			"name": "Register with valid required Params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec7e32a3-0d0e-4673-9bb0-fa16ea093e23",
+						"exec": [
+							"pm.test(\"Response code is 201 or 202\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"var data = JSON.parse(responseBody);\r",
+							"pm.test(\"Non-required fields are empty\", function () {\r",
+							"    pm.expect(data.first_name).to.be.empty;\r",
+							"    pm.expect(data.last_name).to.be.empty;\r",
+							"    pm.expect(data.email).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "819903eb-417d-4f22-b15a-34a92e776a18",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{$guid}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{$randomUUID}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/user/register/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user",
+						"register",
+						""
+					]
+				},
+				"description": "Two fields are required\n- username\n- password\n\nValid input is given for both of these. No other fields are filled out."
+			},
+			"response": []
+		},
+		{
+			"name": "Register with all valid Params",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d2d6c0c-a141-4ee4-af34-a0dee79f49c1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd497e2c-1b7d-4da6-99f4-c044fa28ca0e",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{$guid}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{$randomUUID}}",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "{{$randomFirstName}}",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "{{$randomLastName}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{$randomEmail}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "https://test-api.k6.io/user/register/",
+					"protocol": "https",
+					"host": [
+						"test-api",
+						"k6",
+						"io"
+					],
+					"path": [
+						"user",
+						"register",
+						""
+					]
+				},
+				"description": "All fields are filled with valid input."
+			},
+			"response": []
+		},
+		{
+			"name": "Register with no Params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "763ca2d6-5df6-4cab-a671-e0c648c5a1ea",
+						"exec": [
+							"pm.test(\"Response code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message is 'This field is required'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This field is required.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://test-api.k6.io/user/register/",
+					"protocol": "https",
+					"host": [
+						"test-api",
+						"k6",
+						"io"
+					],
+					"path": [
+						"user",
+						"register",
+						""
+					]
+				},
+				"description": "No fields are filled in.\nNegative test - Null content."
+			},
+			"response": []
+		},
+		{
+			"name": "Register with invalid username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15a85854-fe86-476a-9693-6e810d9c64a0",
+						"exec": [
+							"tests[\"Status code is 400\"] = responseCode.code === 400;\r",
+							"tests[\"Content-Type header is set\"] = postman.getResponseHeader(\"Content-Type\");\r",
+							"\r",
+							"pm.test(\"Error message for invalid username shows\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "$randomInt",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "https://test-api.k6.io/user/register/",
+					"protocol": "https",
+					"host": [
+						"test-api",
+						"k6",
+						"io"
+					],
+					"path": [
+						"user",
+						"register",
+						""
+					]
+				},
+				"description": "Negative test. \n\nThe username is Invalid because it is already used. "
+			},
+			"response": []
+		},
+		{
+			"name": "Register with already-used username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c6a4768-5e61-4f25-92a4-6ac531c8fb68",
+						"exec": [
+							"tests[\"Status code is 400\"] = responseCode.code === 400;\r",
+							"tests[\"Content-Type header is set\"] = postman.getResponseHeader(\"Content-Type\");\r",
+							"\r",
+<<<<<<< HEAD
+							"pm.test(\"Error message for already-used username shows\", function () {\r",
+=======
+							"pm.test(\"Error message for invalid username shows\", function () {\r",
+>>>>>>> 8e2b39bcee0fbf750dc436a604cf385f6b9109f8
+							"    pm.expect(pm.response.text()).to.include(\"A user with that username already exists.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "https://test-api.k6.io/user/register/",
+					"protocol": "https",
+					"host": [
+						"test-api",
+						"k6",
+						"io"
+					],
+					"path": [
+						"user",
+						"register",
+						""
+					]
+				},
+				"description": "Negative test. \n\nThe username is Invalid because it is already used. "
+			},
+			"response": []
+		},
+		{
+			"name": "Basic auth login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f092545-0955-43dd-afd8-9826997b7fbc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/basic/login/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"basic",
+						"login",
+						""
+					]
+				},
+				"description": "Basic auth login."
+			},
+			"response": []
+		},
+		{
+			"name": "List of my crocodiles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a519efb-576a-4c96-a6b2-fac082eb9d85",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "List of all the crocodiles I've created."
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of my crocodiles in invalid Accept format",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8ec6a96-7a4f-4caf-9c03-d5e6b1644566",
+						"exec": [
+							"pm.test(\"Status code is 406\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Could not satisfy the request Accept header.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "List of all the crocodiles I've created."
+			},
+			"response": []
+		},
+		{
+			"name": "Token auth login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "154307e4-fc10-48ea-8f5f-c492e167afd3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"pm.test(\"Response contains access token\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"access\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{testk6Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "https://test-api.k6.io/auth/token/login/",
+					"protocol": "https",
+					"host": [
+						"test-api",
+						"k6",
+						"io"
+					],
+					"path": [
+						"auth",
+						"token",
+						"login",
+						""
+					]
+				},
+				"description": "JWT login with a valid token. "
+			},
+			"response": []
+		},
+		{
+			"name": "Create a crocodile with invalid date format",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3c549e04-701d-4917-8f8a-6bb7c1324db8",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff1025f1-c43e-44ba-940f-d48a1e69ab60",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Date has wrong format. Use one of these formats instead: YYYY-MM-DD.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "17-04-2020",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a crocodile with required value as null",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "921f2921-d659-4763-bfbd-3f213620d4ef",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "82ca4214-8f4c-4c51-a24b-b4d49a7de6a3",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This field is required\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a crocodile with non-accepted sex",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9318b867-a485-445a-abc3-47dd22c55e1d",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "147c1c89-39a1-435b-ae15-c1bb9dd23d36",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.response.to.have.body('{\"sex\":[\"\\\\\"Yeet\\\\\" is not a valid choice.\"]}');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "Yeet",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "{{randomDate}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "1. Log in\n2. Create a crocodile with a different sex"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a crocodile with attempted XXS",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "08bf28d1-9fea-40ac-a0bd-d741e82cafe8",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4c199f3-2ffc-4d84-a0a9-e99b565344fb",
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"String is escaped\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('\\\"gotcha!\\\"');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "<script>alert(\\\"gotcha!\\\")</script>",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "{{randomDate}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "This test can only be run alongside the naughty-string.csv file in the collection runner. \n\n1. Log in\n2. Create a crocodile with a naughty-string name"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "18d8bede-8947-48b1-8cfe-98f774c6b27a",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "005f9503-9653-4253-81e7-a31de62c1550",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "{{randomDate}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a crocodile with a too-long name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "983c45f7-c8cf-4e5b-a65c-8ca574ad72a4",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "877e45a4-3e87-459d-819e-03a667b22f6d",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains error message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Ensure this field has no more than 255 characters.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "3000-12-05",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a random personal crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9fbf911a-3e04-4c54-8eea-007d280d6bb5",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
+							"    pm.environment.set('randomCrocodileID', item );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "03cdabe9-34fe-47b3-b0b8-27087ef3dd9d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"var data = JSON.parse(responseBody);\r",
+							"pm.test(\"Gender data is valid\", function () {\r",
+							"    _.each(pm.response.json(), (sex) => {\r",
+							"    pm.expect(data.sex).to.be.oneOf(['F','M']);\r",
+							"    })\r",
+							"});\r",
+							"pm.test(\"Age data is valid\", function () {\r",
+							"    _.each(pm.response.json(), (age) => {\r",
+							"    pm.expect(data.age).to.be.above(0);\r",
+							"    })\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomCrocodileID}}",
+						""
+					]
+				},
+				"description": "1. Log in\n2. Get a random crocodile from my list"
+			},
+			"response": []
+		},
+		{
+			"name": "Change a random crocodile name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c47cad1f-7589-4c8b-b7ce-2a24b29ff19d",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    console.log(response);\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
+							"    pm.environment.set('randomCrocodileID', item );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c3cbb4c-8146-46fe-be45-4392425ccb08",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomCrocodileID}}",
+						""
+					]
+				},
+				"description": "1. Login\n2. PATCH a random crocodile and change their name"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a random crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "578760fc-638b-4656-b2ae-d564d197d2bd",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    console.log(response);\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
+							"    pm.environment.set('randomCrocodileID', item );\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba85f06a-c564-4614-8f44-46f6b5d0060c",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + \"/my/crocodiles/\" + pm.environment.get(\"randomCrocodileID\"),\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"},  function (err, res) {\r",
+							"    if (err) { console.log(err); }\r",
+							"    pm.test(\"Crocodile no longer exists\", function () {\r",
+							"        pm.expect(err).to.equal(null);\r",
+							"        pm.expect(res.code).to.eql(404);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomCrocodileID}}",
+						""
+					]
+				},
+				"description": "1. Login\n2. Delete a random crocodile from my list"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a private crocodile that is not my crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4f2e149b-d5c8-45d8-9b38-fae4252de8f4",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"});\r",
+							"var crocodile_ids = pm.environment.get('crocodile_ids');\r",
+							"var crocodile_id_array = [];\r",
+							"for (var i = 0; i < crocodile_ids.length; i++) {\r",
+							"    crocodile_id_array.push(crocodile_ids[i]);\r",
+							"}\r",
+							"var not_my_crocodiles = new Array();\r",
+							"for(var i=0; i<4000; i++)\r",
+							"  if(!crocodile_id_array.includes(i))\r",
+							"    not_my_crocodiles.push(i);\r",
+							"var item = not_my_crocodiles[Math.floor(Math.random() * not_my_crocodiles.length)];\r",
+							"pm.environment.set('randomNotCrocodileID', item);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c7105a96-48b0-4191-8ce5-09b7e03f1847",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body('{\"detail\":\"Not found.\"}');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomNotCrocodileID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a private crocodile that is not my crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2653e3f2-4aa0-40ee-9491-2b1d54818729",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"});\r",
+							"var crocodile_ids = pm.environment.get('crocodile_ids');\r",
+							"var crocodile_id_array = [];\r",
+							"for (var i = 0; i < crocodile_ids.length; i++) {\r",
+							"    crocodile_id_array.push(crocodile_ids[i]);\r",
+							"}\r",
+							"var not_my_crocodiles = new Array();\r",
+							"for(var i=0; i<4000; i++)\r",
+							"  if(!crocodile_id_array.includes(i))\r",
+							"    not_my_crocodiles.push(i);\r",
+							"var item = not_my_crocodiles[Math.floor(Math.random() * not_my_crocodiles.length)];\r",
+							"pm.environment.set('randomNotCrocodileID', item);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d179bc0-72fb-4cba-990d-9426c488bb0e",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body('{\"detail\":\"Not found.\"}');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomNotCrocodileID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change the name of a private crocodile that is not my crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0fb63a51-bbca-49b4-99e2-eeee690332cc",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"});\r",
+							"var crocodile_ids = pm.environment.get('crocodile_ids');\r",
+							"var crocodile_id_array = [];\r",
+							"for (var i = 0; i < crocodile_ids.length; i++) {\r",
+							"    crocodile_id_array.push(crocodile_ids[i]);\r",
+							"}\r",
+							"var not_my_crocodiles = new Array();\r",
+							"for(var i=0; i<4000; i++)\r",
+							"  if(!crocodile_id_array.includes(i))\r",
+							"    not_my_crocodiles.push(i);\r",
+							"var item = not_my_crocodiles[Math.floor(Math.random() * not_my_crocodiles.length)];\r",
+							"pm.environment.set('randomNotCrocodileID', item);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "06bdb2ae-61dd-4359-b4da-23d5f19ccd12",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body('{\"detail\":\"Not found.\"}');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomNotCrocodileID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change a random private crocodile's characteristics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e50558b5-1d2f-4073-ad2c-df0844ea9001",
+						"exec": [
+							"pm.test(\"Response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "F",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "2019-01-01",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomCrocodileID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change a random private crocodile's characteristics with required field as null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f45e489c-ef28-408b-b55b-e62953c42be7",
+						"exec": [
+							"pm.test(\"Response code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This field is required\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "F",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "date_of_birth",
+							"value": "2019-01-01",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomCrocodileID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change a random private crocodile's that is not my crocodile's characteristics with required field as null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e33ed594-cc6d-4e09-a641-7bf75bb0c39c",
+						"exec": [
+							"pm.test(\"Response code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "F",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "date_of_birth",
+							"value": "2019-01-01",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						"{{randomNotCrocodileID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

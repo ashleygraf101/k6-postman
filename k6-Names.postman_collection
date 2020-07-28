@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "4cf44510-9bdc-45a5-a577-1ab2b6a9b948",
+		"name": "Names",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a crocodile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6209b5b8-7cf4-4d46-8740-392f669fbfdd",
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"randomDate\", moment().format(\"YYYY-MM-DD\"));\r",
+							"\r",
+							"function sex() {\r",
+							"    var length = 1,\r",
+							"        charset = \"MF\",\r",
+							"        retVal = \"\";\r",
+							"    for (var i = 0, n = charset.length; i < length; ++i) {\r",
+							"        retVal += charset.charAt(Math.floor(Math.random() * n));\r",
+							"    }\r",
+							"    return retVal;\r",
+							"}\r",
+							"pm.environment.set(\"sex\", sex());\r",
+							"\r",
+							"// Get the base64 naughty string injected by the Collection Runner\r",
+							"var names_ = pm.variables.get(\"name\");\r",
+							"\r",
+							"// Set the decoded value as the \"naughty\" variable\r",
+							"pm.variables.set(\"full_name\", names_);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0439cdf3-6e6d-421d-b072-eea8f194abec",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.headers.get(\"Content-Type\") == (\"application/json; charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{testk6Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{testk6Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{full_name}}",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "{{sex}}",
+							"type": "text"
+						},
+						{
+							"key": "date_of_birth",
+							"value": "{{randomDate}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/my/crocodiles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"my",
+						"crocodiles",
+						""
+					]
+				},
+				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
