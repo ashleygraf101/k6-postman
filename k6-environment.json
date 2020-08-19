@@ -1,0 +1,69 @@
+{
+	"id": "01ec0023-e859-4c68-973e-57fa2f52046f",
+	"name": "k6",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "https://test-api.k6.io",
+			"enabled": true
+		},
+		{
+			"key": "crocodile_ids",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "randomCrocodileID",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "randomNumber",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "gender",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "randomDate",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "testk6Token",
+			"value": "YOUR VALUE",
+			"enabled": true
+		},
+		{
+			"key": "testk6Username",
+			"value": "YOUR USERNAME",
+			"enabled": true
+		},
+		{
+			"key": "testk6Password",
+			"value": "YOUR PASSWORD",
+			"enabled": true
+		},
+		{
+			"key": "randomNotCrocodileID",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "sex",
+			"value": "THIS IS A VARIABLE",
+			"enabled": true
+		},
+		{
+			"key": "authorization",
+			"value": "Bearer YOUR VALUE",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-08-19T03:43:02.999Z",
+	"_postman_exported_using": "Postman/7.29.1"
+}
