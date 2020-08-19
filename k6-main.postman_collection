@@ -43,7 +43,69 @@
 				},
 				"description": "List of all public crocodiles"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "List of all public crocodiles",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:24:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Bert\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2010-06-27\",\n        \"age\": 10\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Ed\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"1995-02-27\",\n        \"age\": 25\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Lyle the Crocodile\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"1985-03-03\",\n        \"age\": 35\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Solomon\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"1993-12-25\",\n        \"age\": 26\n    },\n    {\n        \"id\": 5,\n        \"name\": \"The gharial\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2004-06-28\",\n        \"age\": 16\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Sang Buaya\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2006-01-28\",\n        \"age\": 14\n    },\n    {\n        \"id\": 7,\n        \"name\": \"Sobek\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"1854-09-02\",\n        \"age\": 165\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Curious George\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"1981-01-03\",\n        \"age\": 39\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "Get a random public crocodile",
@@ -103,7 +165,68 @@
 				},
 				"description": "Select a random public crocodile. The randomNumber variable assumes that the number of crocodiles in the public list is only 7. "
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get a random public crocodile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/public/crocodiles/{{randomNumber}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"crocodiles",
+								"{{randomNumber}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:24:43 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"name\": \"Ed\",\n    \"sex\": \"M\",\n    \"date_of_birth\": \"1995-02-27\",\n    \"age\": 25\n}"
+				}
+			]
 		},
 		{
 			"name": "Register with valid required Params",
@@ -178,7 +301,79 @@
 				},
 				"description": "Two fields are required\n- username\n- password\n\nValid input is given for both of these. No other fields are filled out."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Register with valid required Params",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{$guid}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{$randomUUID}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/register/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:24:56 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "93"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"43a133a6-c69f-4485-aa57-58aae9afc80f\",\n    \"first_name\": \"\",\n    \"last_name\": \"\",\n    \"email\": \"\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Register with all valid Params",
@@ -264,7 +459,97 @@
 				},
 				"description": "All fields are filled with valid input."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Register with all valid Params",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{$guid}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{$randomUUID}}",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "{{$randomFirstName}}",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "{{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{$randomEmail}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://test-api.k6.io/user/register/",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"k6",
+								"io"
+							],
+							"path": [
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:25:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "129"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"96727d1d-d789-4d4c-b6bb-7f8c32991e0f\",\n    \"first_name\": \"Emelie\",\n    \"last_name\": \"Kling\",\n    \"email\": \"Benny_Langworth@gmail.com\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Register with no Params",
@@ -311,7 +596,64 @@
 				},
 				"description": "No fields are filled in.\nNegative test - Null content."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Register with no Params",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://test-api.k6.io/user/register/",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"k6",
+								"io"
+							],
+							"path": [
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:18:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "79"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": [\n        \"This field is required.\"\n    ],\n    \"password\": [\n        \"This field is required.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Register with invalid username",
@@ -369,7 +711,82 @@
 				},
 				"description": "Negative test. \n\nThe username is Invalid because it is already used. "
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Register with invalid username",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "$randomInt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{testk6Password}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://test-api.k6.io/user/register/",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"k6",
+								"io"
+							],
+							"path": [
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:21:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": [\n        \"Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Register with already-used username",
@@ -427,7 +844,82 @@
 				},
 				"description": "Negative test. \n\nThe username is Invalid because it is already used. "
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Register with already-used username",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{testk6Username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{testk6Password}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://test-api.k6.io/user/register/",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"k6",
+								"io"
+							],
+							"path": [
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:19:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "58"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": [\n        \"A user with that username already exists.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Basic auth login",
@@ -505,7 +997,84 @@
 				},
 				"description": "Basic auth login."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Basic auth login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{testk6Username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{testk6Password}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/basic/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"basic",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:25:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "sessionid=clrayumd71xb1t2ggp1459bkmeczxu7w; expires=Wed, 02 Sep 2020 10:25:31 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3915,\n    \"username\": \"edcnepvpfnfdoknv\",\n    \"first_name\": \"\",\n    \"last_name\": \"\",\n    \"email\": \"edcnepvpfnfdoknv@hotmail.com\",\n    \"date_joined\": \"2020-07-01T05:11:07.506824Z\"\n}"
+				}
+			]
 		},
 		{
 			"name": "List of my crocodiles",
@@ -569,7 +1138,69 @@
 				},
 				"description": "List of all the crocodiles I've created."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "List of my crocodiles",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:37:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 263741,\n        \"name\": \"Miss Lori Hermann\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"1381-01-22\",\n        \"age\": 639\n    },\n    {\n        \"id\": 263762,\n        \"name\": \"Mrs. Aaliyah Rogahn\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-01\",\n        \"age\": 0\n    },\n    {\n        \"id\": 263768,\n        \"name\": \"Ms. Alycia Toy\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-01\",\n        \"age\": 0\n    },\n    {\n        \"id\": 263834,\n        \"name\": \"Mr. Mr. Carmen Durgan\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-01\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264248,\n        \"name\": \"Ms. Jace Balistreri\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 264254,\n        \"name\": \"Miss Gabe Mann\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-02\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264262,\n        \"name\": \"Ms. Samantha Cummerata\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-02\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264266,\n        \"name\": \"Ms. Benedict Dare\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264270,\n        \"name\": \"Mrs. Ayla Kling\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 264275,\n        \"name\": \"Mrs. Lenny Nolan\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264279,\n        \"name\": \"Miss Rowena Harris\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264283,\n        \"name\": \"Mr. Yesenia Abshire\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264284,\n        \"name\": \"Ms. Ben Koepp\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264286,\n        \"name\": \"Dr. Gillian Johnston\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264292,\n        \"name\": \"Mrs. Jennifer Brown\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264293,\n        \"name\": \"Mr. Tristian Streich\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264300,\n        \"name\": \"Mrs. Macey Kuhlman\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264301,\n        \"name\": \"Miss Maida Smith\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264304,\n        \"name\": \"Miss Mrs. Maria Yundt\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 264306,\n        \"name\": \"Miss Westley Rogahn\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 264316,\n        \"name\": \"Ms. Emmy Cremin\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-03\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317875,\n        \"name\": \"Miss Gilberto Nikolaus\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317878,\n        \"name\": \"undef\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317879,\n        \"name\": \"null\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317881,\n        \"name\": \"(null)\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317883,\n        \"name\": \"NIL\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317884,\n        \"name\": \"true\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317886,\n        \"name\": \"True\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317887,\n        \"name\": \"Ms. Isabella Weimann\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317889,\n        \"name\": \"FALSE\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317896,\n        \"name\": \"nil\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317900,\n        \"name\": \"True\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317902,\n        \"name\": \"Dr. Arianna Lebsack\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317904,\n        \"name\": \"None\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317905,\n        \"name\": \"hasOwnProperty\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317906,\n        \"name\": \"\\\\\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317911,\n        \"name\": \"undefined\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317913,\n        \"name\": \"Ms. Mr. Daisy Borer\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-22\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317917,\n        \"name\": \"Mrs. Betsy Schimmel\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 317919,\n        \"name\": \"Miss Icie Purdy\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 317924,\n        \"name\": \"Ms. Pamela Raynor MD\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 317926,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317930,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317931,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317942,\n        \"name\": \"Robert Smith Jr.\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317943,\n        \"name\": \"Rämzilä\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317944,\n        \"name\": \"Brighde Brùn\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317946,\n        \"name\": \"Mr. River Wisoky\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 317947,\n        \"name\": \"??\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317949,\n        \"name\": \"Prasantha Devenampiyatissa\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-23\",\n        \"age\": 0\n    },\n    {\n        \"id\": 317952,\n        \"name\": \"Dr. Hortense Hudson\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 321351,\n        \"name\": \"Miss Ms. Felipe Weimann\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-07-27\",\n        \"age\": 0\n    },\n    {\n        \"id\": 321352,\n        \"name\": \"&#8211\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-07-27\",\n        \"age\": 0\n    },\n    {\n        \"id\": 321353,\n        \"name\": \"Ms. Lyla Sipes\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"3000-12-05\",\n        \"age\": -980\n    },\n    {\n        \"id\": 453040,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453041,\n        \"name\": \"Miss Lysanne Schultz\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453043,\n        \"name\": \"Mrs. Jayde Frami\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453044,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453045,\n        \"name\": \"Mr. Salvatore Conroy\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453046,\n        \"name\": \"Dr. Edgar Barton\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 453047,\n        \"name\": \"Mr. Sean Paucek\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453048,\n        \"name\": \"Dr. Ollie Walsh\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453049,\n        \"name\": \"Miss Mrs. Bret Herzog\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453051,\n        \"name\": \"Ms. Tiara Hintz\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453052,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453054,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453055,\n        \"name\": \"Dr. Bulah Will\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453056,\n        \"name\": \"Mrs. Charlene McClure\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453057,\n        \"name\": \"Mr. Kadin Dietrich IV\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453059,\n        \"name\": \"Mrs. Miss Katrina Streich\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453060,\n        \"name\": \"Mrs. Jade Crona V\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2019-01-01\",\n        \"age\": 1\n    },\n    {\n        \"id\": 453061,\n        \"name\": \"Mrs. Ernesto Lowe\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453062,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453063,\n        \"name\": \"Mrs. Federico Stroman\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453064,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453065,\n        \"name\": \"Miss Randy Kuvalis\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453066,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 453067,\n        \"name\": \"Ms. Loraine Lebsack\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 458538,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 458589,\n        \"name\": \"Mrs. Cathrine Walter\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 464956,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"M\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    },\n    {\n        \"id\": 464957,\n        \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n        \"sex\": \"F\",\n        \"date_of_birth\": \"2020-08-19\",\n        \"age\": 0\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "Get list of my crocodiles in invalid Accept format",
@@ -641,7 +1272,67 @@
 				},
 				"description": "List of all the crocodiles I've created."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get List of my crocodiles in invalid Accept format",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:25:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Could not satisfy the request Accept header.\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Token auth login",
@@ -717,7 +1408,91 @@
 				},
 				"description": "JWT login with a valid token. "
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Token auth login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{testk6Username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{testk6Password}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "https://test-api.k6.io/auth/token/login/",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"k6",
+								"io"
+							],
+							"path": [
+								"auth",
+								"token",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:23:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5NzkxOTAzNywianRpIjoiZmEyZWY3ZjhiN2RlNGExMjk0ZjYxYzllNjMwYmM3NzYiLCJ1c2VyX2lkIjozOTE1fQ.bNO-jk1vYS2mIgRQxV1OuzjnTXrJiikgJ_HJsDuKde0\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3ODMyOTM3LCJqdGkiOiJiM2UyNTllMDE2MDU0YWMzYjQ5NzgxOWEwMzA5ZDY3MCIsInVzZXJfaWQiOjM5MTV9.tElXQfeMboNroZxcrhCD-LnblQCiKJ0B-gb_1HrXa1s\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Create a crocodile with invalid date format",
@@ -824,7 +1599,84 @@
 				},
 				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create a crocodile with invalid date format",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "{{sex}}",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "17-04-2020",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:37:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"date_of_birth\": [\n        \"Date has wrong format. Use one of these formats instead: YYYY-MM-DD.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Create a crocodile with required value as null",
@@ -926,7 +1778,79 @@
 				},
 				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create a crocodile with required value as null",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "{{sex}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 11:23:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"date_of_birth\": [\n        \"This field is required.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Create a crocodile with non-accepted sex",
@@ -1030,7 +1954,84 @@
 				},
 				"description": "1. Log in\n2. Create a crocodile with a different sex"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create a crocodile with non-accepted sex",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "Yeet",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "{{randomDate}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 11:23:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sex\": [\n        \"\\\"Yeet\\\" is not a valid choice.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Create a crocodile with attempted XXS",
@@ -1132,7 +2133,84 @@
 				},
 				"description": "This test can only be run alongside the naughty-string.csv file in the collection runner. \n\n1. Log in\n2. Create a crocodile with a naughty-string name"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create a crocodile with attempted XXS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "<script>alert(\\\"gotcha!\\\")</script>",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "{{sex}}",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "{{randomDate}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 11:23:20 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "109"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 464959,\n    \"name\": \"<script>alert(\\\\\\\"gotcha!\\\\\\\")</script>\",\n    \"sex\": \"M\",\n    \"date_of_birth\": \"2020-08-19\",\n    \"age\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "Create a crocodile",
@@ -1236,7 +2314,84 @@
 				},
 				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create a crocodile",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "{{sex}}",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "{{randomDate}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 11:02:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 464958,\n    \"name\": \"Dr. Richard Goodwin\",\n    \"sex\": \"M\",\n    \"date_of_birth\": \"2020-08-19\",\n    \"age\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "Create a crocodile with a too-long name",
@@ -1346,7 +2501,84 @@
 				},
 				"description": "1. Log in\n2. create a crocodile with Dynamic Variables and variables"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create a crocodile with a too-long name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "{{sex}}",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "3000-12-05",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:38:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": [\n        \"Ensure this field has no more than 255 characters.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Get a random personal crocodile",
@@ -1448,7 +2680,66 @@
 				},
 				"description": "1. Log in\n2. Get a random crocodile from my list"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get a random personal crocodile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:22:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 317900,\n    \"name\": \"True\",\n    \"sex\": \"M\",\n    \"date_of_birth\": \"2020-07-22\",\n    \"age\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "Change a random crocodile name",
@@ -1471,7 +2762,6 @@
 							"}, function (err, res) {\r",
 							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
 							"    let response = res.json();\r",
-							"    console.log(response);\r",
 							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
 							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
 							"    pm.environment.set('randomCrocodileID', item );\r",
@@ -1544,7 +2834,75 @@
 				},
 				"description": "1. Login\n2. PATCH a random crocodile and change their name"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Change a random crocodile name",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:38:25 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 317887,\n    \"name\": \"Ms. Marvin Dooley\",\n    \"sex\": \"M\",\n    \"date_of_birth\": \"2020-07-22\",\n    \"age\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "Delete a random crocodile",
@@ -1567,7 +2925,6 @@
 							"}, function (err, res) {\r",
 							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
 							"    let response = res.json();\r",
-							"    console.log(response);\r",
 							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
 							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
 							"    pm.environment.set('randomCrocodileID', item );\r",
@@ -1640,7 +2997,58 @@
 				},
 				"description": "1. Login\n2. Delete a random crocodile from my list"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Delete a random crocodile",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:38:37 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "Get a private crocodile that is not my crocodile",
@@ -1733,7 +3141,62 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get a private crocodile that is not my crocodile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomNotCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 11:01:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Not found.\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Delete a private crocodile that is not my crocodile",
@@ -1826,7 +3289,62 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Delete a private crocodile that is not my crocodile",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomNotCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:43:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Not found.\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Change the name of a private crocodile that is not my crocodile",
@@ -1914,7 +3432,72 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Edit the name of a private crocodile that is not my crocodile",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomNotCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:40:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Not found.\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Change a random private crocodile's characteristics",
@@ -2025,7 +3608,87 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Change a random private crocodile's characteristics",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "F",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "2019-01-01",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:38:54 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 317889,\n    \"name\": \"Dr. Cheyenne Mohr\",\n    \"sex\": \"F\",\n    \"date_of_birth\": \"2019-01-01\",\n    \"age\": 1\n}"
+				}
+			]
 		},
 		{
 			"name": "Change a random private crocodile's characteristics with required field as null",
@@ -2139,7 +3802,89 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Change a random private crocodile's characteristics with required field as null",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "F",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "date_of_birth",
+									"value": "2019-01-01",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 11:00:58 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sex\": [\n        \"This field is required.\"\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Change a random private crocodile's that is not my crocodile's characteristics with required field as null",
@@ -2253,7 +3998,89 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Change a random private crocodile's that is not my crocodile's characteristics with required field as null",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomNamePrefix}} {{$randomFullName}}",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "F",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "date_of_birth",
+									"value": "2019-01-01",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/my/crocodiles/{{randomNotCrocodileID}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"crocodiles",
+								"{{randomNotCrocodileID}}",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 19 Aug 2020 10:19:04 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Not found.\"\n}"
+				}
+			]
 		}
 	],
 	"protocolProfileBehavior": {}
