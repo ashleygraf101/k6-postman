@@ -47,4 +47,4 @@ newman run k6-main.postman_collection -e k6-environment.json -r htmlextra
 - Dynamic Variables
 - custom variables
 - Pre-request scripts
-- "Post-request" scripts in Tests
+- Data-testing testing
