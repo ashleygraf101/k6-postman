@@ -1941,6 +1941,32 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3c217092-0689-4d06-ba7c-1328b013f861",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
+							"    pm.environment.set('randomCrocodileID', item );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -2023,6 +2049,32 @@
 							"\r",
 							"pm.test(\"Error message matches string\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"This field is required\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf8a0e26-2a5c-4283-ab92-95cb2c22634b",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
+							"    pm.environment.set('randomCrocodileID', item );\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2111,6 +2163,32 @@
 							"\r",
 							"pm.test(\"Error message matches string\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"Not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cf231c39-41ea-49fe-a8bc-8e19ce4278df",
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + '/my/crocodiles',\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'content-type': 'application/json',\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ username: pm.environment.get(\"testk6Username\"), password: pm.environment.get(\"testk6Password\") })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.environment.set(\"authorization\", \"Bearer \" + pm.environment.get(\"testk6Token\"));\r",
+							"    let response = res.json();\r",
+							"    crocodile_ids = _.map(response, ({ id }) => ( id )); \r",
+							"    var item = crocodile_ids[Math.floor(Math.random() * crocodile_ids.length)];\r",
+							"    pm.environment.set('randomCrocodileID', item );\r",
 							"});"
 						],
 						"type": "text/javascript"
