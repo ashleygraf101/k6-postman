@@ -382,11 +382,7 @@
 							"tests[\"Status code is 400\"] = responseCode.code === 400;\r",
 							"tests[\"Content-Type header is set\"] = postman.getResponseHeader(\"Content-Type\");\r",
 							"\r",
-<<<<<<< HEAD
 							"pm.test(\"Error message for already-used username shows\", function () {\r",
-=======
-							"pm.test(\"Error message for invalid username shows\", function () {\r",
->>>>>>> 8e2b39bcee0fbf750dc436a604cf385f6b9109f8
 							"    pm.expect(pm.response.text()).to.include(\"A user with that username already exists.\");\r",
 							"});"
 						],
