@@ -5,6 +5,10 @@ TODO: Move most of the pre-request scripts from pre-test to pre-collection
 
 TODO: add idempotent GET, DELETE, POST, PUT & PATCH tests
 
+# Newman
+
+newman run k6-main.postman_collection -e k6-environment.json -r htmlextra
+
 ## Tests
 - Register account
 - Login basic auth
