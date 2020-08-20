@@ -7,12 +7,20 @@ TODO: add idempotent GET, DELETE, POST, PUT & PATCH tests
 
 # Newman
 
+enter the below to find the collection UUID. It will be indentified by the name you give the collection after you upload it.
+
+``
+https://api.getpostman.com/collections?apikey={{postman_api_key} 
+``
+
 ## MAIN FILE
 
 ``
  $ newman run k6-main.postman_collection -e k6-environment.json -r htmlextra
 ``
+
 OR
+
 ``
  $ newman run https://api.getpostman.com/collections/{{your_collection_uuid}}?apikey={{your_api_key}} -e k6-environment.json -r htmlextra
 ``
@@ -27,14 +35,6 @@ OR
  $ newman run k6-Base64.postman_collection -e k6-environment.json -d naughty-strings.csv -n 675 -r htmlextra
 ``
 
-
-
-enter the below to find the collection UUID. It will be indentified by the name you give the collection after you upload it.
-
-``
-https://api.getpostman.com/collections?apikey={{postman_api_key} 
-``
- 
 
 ## Tests
 - Register account
