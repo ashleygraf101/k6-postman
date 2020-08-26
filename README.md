@@ -1,7 +1,7 @@
 # Exploratory API testing
 Exploratory API testing with Postman and the test-k6 API.
 
-TODO: Move most of the pre-request scripts from pre-test to pre-collection
+<img src="https://pbs.twimg.com/media/EfxQzI0UMAEY4R8?format=jpg&name=medium">
 
 TODO: add idempotent GET, DELETE, POST, PUT & PATCH tests
 
